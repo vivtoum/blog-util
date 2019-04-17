@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: blog-web #应用名
+  config:
+    name: blog-web #配置文件名
+  profiles:
+    active: ${IDC_PROFILE:dev} #选择配置分支
+  cloud:
+    config:
+      enabled: false #关闭远程配置中心

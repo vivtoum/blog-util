@@ -1,0 +1,38 @@
+########################## IDC-WEB公共配置 #######################################
+server:
+  port: 9091 #部署信息（IDC界面端口）
+  tomcat:
+    uri-encoding: utf-8
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://118.24.203.80:1001/eureka                   #部署信息（注册中心地址）
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 100000
+        readTimeout: 100000
+
+blog-svc:
+  url: http://localhost:8081
+
+blog-web:
+  url: http://localhost:9091
+---
+###################### IDC-WEB天讯开发环境配置 #########################
+spring:
+  profiles: dev                                            #部署信息（选择配置分支）
+  redis:
+    host: 39.104.49.60                                     #部署信息（Redis主机地址）
+    port: 6379                                             #部署信息（Redis访问端口）
+    password: QQqq407716220                                #部署信息（Redis认证密码）
+---
+###################### IDC-WEB香港测试环境配置 #########################
+spring:
+  profiles: hk-test                                        #部署信息（选择配置分支）
+  redis:
+    host: 192.168.122.85                                   #部署信息（Redis主机地址）
+    port: 6379                                             #部署信息（Redis访问端口）
+    password: Cache##85                                    #部署信息（Redis认证密码）
