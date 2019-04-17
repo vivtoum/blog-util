@@ -77,7 +77,7 @@ public class BaseController<V> {
     /**
      * 批量删除IDS
      */
-    @DeleteMapping("deleteBatch")
+    @PostMapping("deleteBatch")
     public ResultModel<List<String>> deleteBatch(@RequestBody List<String> ids) {
         return baseFeign.deleteBatch(ids);
     }
