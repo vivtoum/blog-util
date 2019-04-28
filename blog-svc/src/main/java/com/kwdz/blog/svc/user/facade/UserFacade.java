@@ -4,6 +4,7 @@ import com.kwdz.blog.api.user.vo.UserVo;
 import com.kwdz.blog.svc.common.facade.CommonFacade;
 import com.kwdz.blog.svc.user.entity.UserEntity;
 import com.kwdz.blog.svc.user.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user/")
+@Slf4j
 public class UserFacade extends CommonFacade<UserVo, UserEntity> {
     @Autowired
     private UserService userService;
@@ -25,6 +27,7 @@ public class UserFacade extends CommonFacade<UserVo, UserEntity> {
 
     @GetMapping("getName/{username}")
     UserEntity findByUserName(@PathVariable("username") String userName) {
+        log.info(userService.findByUserName(userName).toString());
         return userService.findByUserName(userName);
     }
 }

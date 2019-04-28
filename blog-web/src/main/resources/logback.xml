@@ -3,9 +3,9 @@
 <configuration>
     <appender name="consoleLog" class="ch.qos.logback.core.ConsoleAppender">
         <layout class="ch.qos.logback.classic.PatternLayout">
-           <!-- <pattern>
-                %d - %msg%n   &lt;!&ndash; 控制台打印日志文件体 时间-信息 &ndash;&gt;
-            </pattern>-->
+            <!-- <pattern>
+                 %d - %msg%n   &lt;!&ndash; 控制台打印日志文件体 时间-信息 &ndash;&gt;
+             </pattern>-->
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </layout>
     </appender>
@@ -25,7 +25,7 @@
         <!-- 滚动策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 设置info日志路径 -->
-            <fileNamePattern>svc.info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>web.info.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
@@ -42,22 +42,22 @@
         <!-- 滚动策略 -->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!-- 设置error日志路径 -->
-            <fileNamePattern>svc.error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>web.error.%d{yyyy-MM-dd}.log</fileNamePattern>
         </rollingPolicy>
     </appender>
 
     <!-- 1. 输出SQL 到控制台和文件-->
-    <logger name="org.hibernate.SQL" additivity="false" >
-        <level value="DEBUG" />
-        <appender-ref ref="fileInfoLog" />
-        <appender-ref ref="consoleLog" />
+    <logger name="org.hibernate.SQL" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="fileInfoLog"/>
+        <appender-ref ref="consoleLog"/>
     </logger>
 
     <!-- 2. 输出SQL 的参数到控制台和文件-->
-    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE" >
-        <level value="TRACE" />
-        <appender-ref ref="fileInfoLog" />
-        <appender-ref ref="consoleLog" />
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="TRACE">
+        <level value="TRACE"/>
+        <appender-ref ref="fileInfoLog"/>
+        <appender-ref ref="consoleLog"/>
     </logger>
 
 

@@ -3,7 +3,7 @@ spring:
     name: blog-svc #应用名
   cloud:
     config:
-      uri: http://118.24.203.80:1201 #server服务
+      uri: http://www.vivtoum.tech:1201 #server服务
       name: blog-svc #寻找配置文件(,)隔开是多个配置文件
       profile: single
       label: master

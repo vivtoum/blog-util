@@ -19,8 +19,13 @@
 * 负载均衡示例：[Zuul和Eureka的负载均衡示例](https://www.jianshu.com/p/c93b285ce32e)
 
 ### RabbitMQ 
-* CentOS 安装 RabbitMQ：[linux CentOS 7 安装 RabbitMQ Erlang 21.0](https://www.cnblogs.com/caozengling/p/9963476.html)
-* Linux 安装 RabbitMQ：[Linux下安装erlang及rabbitmq](https://www.cnblogs.com/dreasky/p/9146494.html)
+* CentOS 安装 RabbitMQ：[linux CentOS 7 安装 RabbitMQ Erlang 21.0](https://blog.51cto.com/hequan/2120565)
+
+
+### redis
+* [Spring Boot 整合 Redis 实现缓存操作(代码嵌入)](https://www.cnblogs.com/Alandre/p/6713769.html) 
+* [springboot+redis实现缓存数据(注解嵌入)](https://www.cnblogs.com/hhhshct/p/9002648.html)
+
 ### 日志
 * 分布式日志采集：[spring-cloud 分布式日志采集](https://blog.csdn.net/guduyishuai/article/details/79228306)
 

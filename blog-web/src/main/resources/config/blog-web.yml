@@ -7,7 +7,7 @@ server:
 eureka:
   client:
     service-url:
-      defaultZone: http://118.24.203.80:1001/eureka                   #部署信息（注册中心地址）
+      defaultZone: http://www.vivtoum.tech:1001/eureka/                    #部署信息（注册中心地址）
 feign:
   client:
     config:
@@ -16,10 +16,10 @@ feign:
         readTimeout: 100000
 
 blog-svc:
-  url: http://localhost:8081
+  url: http://localhost:12345
 
 blog-web:
-  url: http://localhost:9091
+  url: http://localhost:${server.port}
 ---
 ###################### IDC-WEB天讯开发环境配置 #########################
 spring:
