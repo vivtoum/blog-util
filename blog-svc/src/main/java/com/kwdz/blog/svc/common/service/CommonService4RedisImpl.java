@@ -123,7 +123,7 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
         // 缓存存在
         boolean hasKey = redisUtil.hasKey(this.key);
         if (hasKey) {
-            V v = (V) redisUtil.get(key);
+            V v = (V) redisUtil.get(this.key);
 
             log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.get() : 从缓存中获取了数据 >> " + v.toString());
             return ResultModel.of(v);
@@ -136,8 +136,8 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
         }
         V entityVo = FastCopy.copy(entity, entityVoClass);
 
-        // 插入缓存
-        redisUtil.set(key, entityVo, 60);
+        // 插入缓存,60秒缓存
+        redisUtil.set(this.key, entityVo, 60);
         log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.get() : 数据插入缓存 >> " + entityVo.toString());
 
         return ResultModel.of(entityVo);
@@ -274,6 +274,6 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
     }
 
     private String createKey(String key) {
-        return this.entityVoClass + ":" + key;
+        return this.entityVoClass.getSimpleName() + ":" + key;
     }
 }

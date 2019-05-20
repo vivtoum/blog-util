@@ -8,14 +8,14 @@ import java.io.Serializable;
 /**
  * @author huyt
  * @version 0.0.1
- * @date 2019/4/15 1:36
+ * @since 2019/4/15 1:36
  */
 @Entity
 @Data
 @Table(name = "user", schema = "springbootdemo", catalog = "")
 public class UserEntity implements Serializable {
 
-    private static final long serialVersionUID = -3393406059107146907L;
+    private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "user_id", nullable = false, length = 255)
