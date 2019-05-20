@@ -1,0 +1,58 @@
+#阿里云服务器
+server:
+  port: 12345
+  tomcat:
+    uri-encoding: utf-8
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://www.vivtoum.tech:1001/eureka/                    #部署信息（注册中心地址）
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 100000
+        readTimeout: 100000
+
+spring:
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+blog-svc:
+  url: http://localhost:${server.port}
+jasypt:
+  encryptor:
+    password: vivtoum
+
+security:
+  basic:
+    enabled: false
+---
+###################### BLOG-SVC #########################
+
+spring:
+  profiles: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://www.vivtoum.tech:3306/springbootdemo?useSSL=false
+    username: root
+    password: ENC(yVn9f7QzGDm0LKCIHBdgng6J7wpLebiy)
+    tomcat:
+      max-active: 100
+      max-idle: 200
+      initial-size: 20
+      driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: www.vivtoum.tech                                 # 部署信息（Redis主机地址）
+    port: 6379                                             # 部署信息（Redis访问端口）
+    password: ENC(04m+YpfOe/NCVhBy40CRFQuE8Asy+gEv)        # 部署信息（Redis认证密码）

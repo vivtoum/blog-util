@@ -4,10 +4,21 @@ server:
   tomcat:
     uri-encoding: utf-8
 
+spring:
+  thymeleaf:                                                               # THYMELEAF（模板引擎配置）
+    cache: false
+    prefix: classpath:/view/
+    suffix: .html
+    encoding: utf-8
+    mode: LEGACYHTML5
+
+  resources:                                                               # 静态资源（标识资源路径）
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
 eureka:
   client:
     service-url:
-      defaultZone: http://www.vivtoum.tech:1001/eureka/                    #部署信息（注册中心地址）
+      defaultZone: http://www.vivtoum.tech:1001/eureka/                    # 部署信息（注册中心地址）
 feign:
   client:
     config:
@@ -20,19 +31,23 @@ blog-svc:
 
 blog-web:
   url: http://localhost:${server.port}
+
+jasypt:
+  encryptor:
+    password: vivtoum
 ---
-###################### IDC-WEB天讯开发环境配置 #########################
+###################### BLOG-WEB开发环境配置 #########################
 spring:
-  profiles: dev                                            #部署信息（选择配置分支）
+  profiles: dev                                            # 部署信息（选择配置分支）
   redis:
-    host: 39.104.49.60                                     #部署信息（Redis主机地址）
-    port: 6379                                             #部署信息（Redis访问端口）
-    password: QQqq407716220                                #部署信息（Redis认证密码）
+    host: www.vivtoum.tech                                 # 部署信息（Redis主机地址）
+    port: 6379                                             # 部署信息（Redis访问端口）
+    password: ENC(04m+YpfOe/NCVhBy40CRFQuE8Asy+gEv)        # 部署信息（Redis认证密码）
 ---
-###################### IDC-WEB香港测试环境配置 #########################
+###################### BLOG-WEB测试环境配置 #########################
 spring:
-  profiles: hk-test                                        #部署信息（选择配置分支）
+  profiles: test                                           # 部署信息（选择配置分支）
   redis:
-    host: 192.168.122.85                                   #部署信息（Redis主机地址）
-    port: 6379                                             #部署信息（Redis访问端口）
-    password: Cache##85                                    #部署信息（Redis认证密码）
+    host: 192.168.122.85                                   # 部署信息（Redis主机地址）
+    port: 6379                                             # 部署信息（Redis访问端口）
+    password: Cache##85                                    # 部署信息（Redis认证密码）

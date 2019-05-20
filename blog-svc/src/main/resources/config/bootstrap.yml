@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: blog-svc #应用名
+  config:
+    name: blog-svc #配置文件名
+  #  cloud:
+  #    config:
+  #      uri: http://www.vivtoum.tech:1201 #server服务
+  #      name: blog-svc #寻找配置文件(,)隔开是多个配置文件
+  #      profile: single
+  #      label: master
+  #      enabled: true #开启远程配置中心
+  profiles:
+    active: ${IDC_PROFILE:dev} #选择配置分支
+  cloud:
+    config:
+      enabled: false #关闭远程配置中心

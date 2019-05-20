@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
  */
 @SpringBootApplication
 @EnableDiscoveryClient
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class BlogSvcApplication {
 
     public static void main(String[] args) {
