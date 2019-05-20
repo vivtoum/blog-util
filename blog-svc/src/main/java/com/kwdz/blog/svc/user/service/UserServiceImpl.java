@@ -15,10 +15,9 @@ import javax.persistence.PersistenceContext;
 
 /**
  * @version 0.0.1
- * @author: huyt
- * @date: 2019/4/15 0:51
+ * @author huyt
+ * @date 2019/4/15 0:51
  */
-
 @Transactional
 @Service
 public class UserServiceImpl extends CommonService4RedisImpl<UserVo, UserEntity> implements UserService {

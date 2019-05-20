@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 /**
  * BLOG-SVC 启动类
  *
+ * @author YT.Hu
  * @see BlogSvcConfig 公用配置
  */
 @SpringBootApplication

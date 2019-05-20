@@ -6,8 +6,8 @@ import com.kwdz.blog.svc.user.entity.UserEntity;
 
 /**
  * @version 0.0.1
- * @author: huyt
- * @date: 2019/4/15 0:50
+ * @author huyt
+ * @date 2019/4/15 0:50
  */
 public interface UserService extends CommonService<UserVo, UserEntity> {
 
