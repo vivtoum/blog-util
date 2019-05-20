@@ -13,7 +13,7 @@ spring:
     mode: LEGACYHTML5
 
   resources:                                                               # 静态资源（标识资源路径）
-    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,
 
 eureka:
   client:
@@ -37,6 +37,8 @@ jasypt:
     password: vivtoum
 ---
 ###################### BLOG-WEB开发环境配置 #########################
+root:
+  path: ./upload/
 spring:
   profiles: dev                                            # 部署信息（选择配置分支）
   redis:

@@ -14,8 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/edit/")
 public class EditorController {
 
-    @GetMapping("index")
-    public String index() {
-        return "edit";
+    @GetMapping("wang")
+    public String wang() {
+        return "wang";
+    }
+
+    @GetMapping("ueditor")
+    public String ueditor() {
+        return "ueditor";
     }
 }
