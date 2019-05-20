@@ -6,8 +6,8 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 
 /**
  * @version 0.0.1
- * @author: huyt
- * @date: 2019/4/17 0:54
+ * @author YT.Hu
+ * @date 2019/4/17 0:54
  */
 
 @FeignClient(name = "blog-svc", path = "/user/", url = "${blog-svc.url}")

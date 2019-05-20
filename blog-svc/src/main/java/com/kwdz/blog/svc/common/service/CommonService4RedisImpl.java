@@ -4,6 +4,7 @@ package com.kwdz.blog.svc.common.service;
 import com.kwdz.blog.api.common.page.PageInfo;
 import com.kwdz.blog.api.common.result.ResultModel;
 import com.kwdz.blog.api.common.util.FastCopy;
+import com.kwdz.blog.api.common.util.RedisUtil;
 import com.kwdz.blog.svc.common.dao.CommonDao;
 import com.kwdz.blog.svc.common.dao.FastPage;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +12,6 @@ import org.hibernate.jpa.internal.QueryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,7 +22,6 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * 通用Service实现类
@@ -41,11 +39,13 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
     @Autowired
     private CommonDao<E> commonDao;//注入实体类仓库
 
+    private String key;
+
     @PersistenceContext
     private EntityManager em;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisUtil redisUtil;
 
     @SuppressWarnings("unchecked")
     public CommonService4RedisImpl() {
@@ -118,15 +118,14 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
     @Override
     public ResultModel<V> get(String id) {
         // 从缓存中获取城市信息
-        String key = this.entityVoClass + "_" + id;
-        ValueOperations<String, V> operations = redisTemplate.opsForValue();
+        this.key = createKey(id);
 
         // 缓存存在
-        boolean hasKey = redisTemplate.hasKey(key);
+        boolean hasKey = redisUtil.hasKey(this.key);
         if (hasKey) {
-            V v = operations.get(key);
+            V v = (V) redisUtil.get(key);
 
-            log.info(this.entityVoClass + "ServiceImpl.get() : 从缓存中获取了数据 >> " + v.toString());
+            log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.get() : 从缓存中获取了数据 >> " + v.toString());
             return ResultModel.of(v);
         }
 
@@ -138,8 +137,8 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
         V entityVo = FastCopy.copy(entity, entityVoClass);
 
         // 插入缓存
-        operations.set(key, entityVo, 60, TimeUnit.SECONDS);
-        log.info(this.entityVoClass + "ServiceImpl.get() : 数据插入缓存 >> " + entityVo.toString());
+        redisUtil.set(key, entityVo, 60);
+        log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.get() : 数据插入缓存 >> " + entityVo.toString());
 
         return ResultModel.of(entityVo);
     }
@@ -171,16 +170,17 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
 
             Object obj = Class.forName(this.entityVoClass.getName()).newInstance();
             Class c = obj.getClass();
-            Field[] fields = c.getDeclaredFields();//取得所有类成员变量
+            //  取得所有类成员变量
+            Field[] fields = c.getDeclaredFields();
             for (int i = 0; i < fields.length; i++) {
                 try {
                     if ("userId".equalsIgnoreCase(fields[i].getName())) {
                         //  缓存存在，删除缓存
-                        String key = this.entityVoClass + "_" + getId(e);
-                        boolean hasKey = redisTemplate.hasKey(key);
+                        this.key = createKey(getId(e));
+                        boolean hasKey = redisUtil.hasKey(this.key);
                         if (hasKey) {
-                            redisTemplate.delete(key);
-                            log.info(this.entityVoClass + "ServiceImpl.save() : 从缓存中删除  >> " + e.toString());
+                            redisUtil.del(key);
+                            log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.save() : 从缓存中删除  >> " + e.toString());
                         }
                     }
                 } catch (Exception ex) {
@@ -191,7 +191,7 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
 
             return ResultModel.of(FastCopy.copy(e, entityVoClass));
         } catch (Throwable e) {
-            //打印SQL最底层异常
+            //  打印SQL最底层异常
             while (e.getCause() != null) {
                 e = e.getCause();
             }
@@ -221,15 +221,14 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
                 commonDao.delete(id);
 
                 // 从缓存中获取城市信息
-                String key = this.entityVoClass + "_" + id;
-                ValueOperations<String, V> operations = redisTemplate.opsForValue();
+                String key = createKey(id);
 
                 // 缓存存在
-                boolean hasKey = redisTemplate.hasKey(key);
+                boolean hasKey = redisUtil.hasKey(key);
                 if (hasKey) {
-                    V v = operations.get(key);
-                    redisTemplate.delete(key);
-                    log.info(this.entityVoClass + "ServiceImpl.save() : 从缓存中删除  >> " + v.toString());
+                    V v = (V) redisUtil.get(key);
+                    redisUtil.del(key);
+                    log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.save() : 从缓存中删除  >> " + v.toString());
                 }
             }
             return ResultModel.of(ids);
@@ -272,5 +271,9 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
             log.info("没有这个属性");
             return null;
         }
+    }
+
+    private String createKey(String key) {
+        return this.entityVoClass + ":" + key;
     }
 }

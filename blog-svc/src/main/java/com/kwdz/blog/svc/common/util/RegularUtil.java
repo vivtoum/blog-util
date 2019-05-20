@@ -3,19 +3,18 @@ package com.kwdz.blog.svc.common.util;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
- 
- 
+
+
 /**
  * 正则表达式工具类
  * <p/>
  * 创建时间: 2018-8-30 上午10:49:13 <br/>
- * 
- * @author chenhuan
- * @version
+ *
+ * @author YT.Hu
  * @since v0.0.1
  */
 public class RegularUtil {
-	
+
     private static final String TAG = "RegularUtil";
     /********************************* 常用正则表达式代码 ********************/
     /**
@@ -60,7 +59,7 @@ public class RegularUtil {
      */
     /**
      * 正则表达式判断字符串是否全是数字
-     * 
+     *
      * @param strInput
      * @return
      */
@@ -77,9 +76,10 @@ public class RegularUtil {
             return false;
         }
     }
+
     /**
      * 正则表达式判断字符串是否全是字母
-     * 
+     *
      * @param strInput
      * @return
      */
@@ -96,9 +96,10 @@ public class RegularUtil {
             return false;
         }
     }
+
     /**
      * 正则表达式判断字符串是否全是中文汉字
-     * 
+     *
      * @param strInput
      * @return
      */
@@ -116,9 +117,10 @@ public class RegularUtil {
             return false;
         }
     }
+
     /**
      * 正则表达式判断字符串是否含有中文汉字
-     * 
+     *
      * @param strInput
      * @return
      */
@@ -136,13 +138,12 @@ public class RegularUtil {
             return false;
         }
     }
+
     /**
      * 正则表达式判断字符串是否满足中文、大小写字母、数字、下划线和长度限制
-     * 
-     * @param strInput
-     *            字符串
-     * @param intMax
-     *            字符串的设定长度
+     *
+     * @param strInput 字符串
+     * @param intMax   字符串的设定长度
      * @return
      */
     public static boolean isStringOK(String strInput, int intMax) {
@@ -160,9 +161,10 @@ public class RegularUtil {
             return false;
         }
     }
+
     /**
      * 验证字符串是否是邮箱地址
-     * 
+     *
      * @param strEmail
      * @return
      */
@@ -180,10 +182,10 @@ public class RegularUtil {
             return false;
         }
     }
- 
+
     /**
      * 验证是否是QQ号码
-     * 
+     *
      * @param strQQ
      * @return
      */
@@ -200,9 +202,10 @@ public class RegularUtil {
             return false;
         }
     }
+
     /**
      * 返回正则表达式匹配的结果
-     * 
+     *
      * @param strInput
      * @return
      */
@@ -213,7 +216,7 @@ public class RegularUtil {
                 Matcher matcher = pattern.matcher(strSource);
                 ArrayList<String> RegexMatcherResults = new ArrayList<String>();
                 while (matcher.find()) {
-                   
+
                     RegexMatcherResults.add(matcher.group(1));
                 }
 
@@ -221,17 +224,16 @@ public class RegularUtil {
             }
         } catch (Exception ex) {
             ex.printStackTrace();
-            
+
         }
         return null;
     }
+
     /**
      * 通过正则表达式提取字串
-     * 
-     * @param str
-     *            传入的字符串
-     * @param regEx
-     *            正则表达式
+     *
+     * @param str   传入的字符串
+     * @param regEx 正则表达式
      * @return 要获取的字符串
      */
     public static String getRegexString(String strMsg) {

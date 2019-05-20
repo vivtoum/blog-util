@@ -27,7 +27,7 @@ public class SwaggerConfig {
                 .apiInfo(new ApiInfoBuilder()
                         .title("标题：个人Blog接口文档（svc端）")
                         .description("描述：个人Blog接口")
-                        .contact(new Contact("huyt", null, null))
+                        .contact(new Contact("YT.Hu", null, null))
                         .version("版本号:0.1")
                         .build())
                 .select()

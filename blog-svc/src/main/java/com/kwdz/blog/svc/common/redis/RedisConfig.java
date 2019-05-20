@@ -26,34 +26,4 @@ public class RedisConfig extends CachingConfigurerSupport {
         return rm;
     }
 
-    // @Bean
-    // public KeyGenerator myKeyGenerator(){
-    // return new KeyGenerator() {
-    // @Override
-    // public Object generate(Object target, Method method, Object... params) {
-    // StringBuilder sb = new StringBuilder();
-    // sb.append(target.getClass().getName());
-    // sb.append(method.getName());
-    // for (Object obj : params) {
-    // sb.append(obj.toString());
-    // }
-    // return sb.toString();
-    // }
-    // };
-    //
-    // }
-
-    @Bean
-    public RedisTemplate<String, String> redisTemplate(RedisConnectionFactory factory) {
-        StringRedisTemplate template = new StringRedisTemplate(factory);
-        @SuppressWarnings({"rawtypes", "unchecked"})
-        Jackson2JsonRedisSerializer jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer(Object.class);
-        ObjectMapper om = new ObjectMapper();
-        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
-        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
-        jackson2JsonRedisSerializer.setObjectMapper(om);
-        template.setValueSerializer(jackson2JsonRedisSerializer);
-        template.afterPropertiesSet();
-        return template;
-    }
 }

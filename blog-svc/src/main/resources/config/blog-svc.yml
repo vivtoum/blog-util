@@ -56,3 +56,4 @@ spring:
     host: www.vivtoum.tech                                 # 部署信息（Redis主机地址）
     port: 6379                                             # 部署信息（Redis访问端口）
     password: ENC(04m+YpfOe/NCVhBy40CRFQuE8Asy+gEv)        # 部署信息（Redis认证密码）
+    datebase: 1

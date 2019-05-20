@@ -23,8 +23,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 公共配置 BLOG-WEB
+ *
+ * @author YT.Hu
  */
-
 @Slf4j
 @ComponentScan({"com.kwdz.*"})
 @EnableFeignClients({"com.kwdz.*"})
