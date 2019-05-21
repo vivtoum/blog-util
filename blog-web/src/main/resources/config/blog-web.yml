@@ -45,6 +45,33 @@ spring:
     host: www.vivtoum.tech                                 # 部署信息（Redis主机地址）
     port: 6379                                             # 部署信息（Redis访问端口）
     password: ENC(04m+YpfOe/NCVhBy40CRFQuE8Asy+gEv)        # 部署信息（Redis认证密码）
+#  encrypt:
+#    debug: false
+#    publicKey: |
+#  -----BEGIN RSA PUBLIC KEY-----
+#  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlYCzVPPQWUf4ZnZZ6U0lxRCeoAcLPnj634ZU997+Zfx/aHp0MrolH9zRriQ8Y
+#  4MGmo0dEWCVpSoYRvHMBA1DOvWwx93Ob6MPQbFtjjj96Yfdo1SJbOuF2A/OqQ5Cs2QRs7sUgX6nx336vM7+N5fsWQXr0N4NItJrEKsKFSdTM
+#  xRxv1KgCONXNFVFhC5/tcmIlorl+uViPOUGgKvsh88KohXEK+p9Rd2r4vxso7u5GWM/Is+KiOxMwJrOL5NwhSjBdMEb3CWdETjbkKq4MylJVN
+#  McqGlXPdPDSDa6/p9FUXCU3nYbHwBlBdii2u+fuw648qXaGnZiY/rAJ0J8IbikEQIDAQAB
+#  -----END RSA PUBLIC KEY-----
+#    privateKey: |
+#  -----BEGIN RSA PRIVATE KEY-----
+#  MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCVgLNU89BZR/hmdlnpTSXFEJ6gBws+ePrfhlT33v5l/H9oenQyuiUf3NGuJD
+#  xjgwaajR0RYJWlKhhG8cwEDUM69bDH3c5vow9BsW2OOP3ph92jVIls64XYD86pDkKzZBGzuxSBfqfHffq8zv43l+xZBevQ3g0i0msQqwoVJ1Mz
+#  FHG/UqAI41c0VUWELn+1yYiWiuX65WI85QaAq+yHzwqiFcQr6n1F3avi/Gyju7kZYz8iz4qI7EzAms4vk3CFKMF0wRvcJZ0RONuQqrgzKUlU0x
+#  yoaVc908NINrr+n0VRcJTedhsfAGUF2KLa75+7DrjypdoadmJj+sAnQnwhuKQRAgMBAAECggEAWm72i43MWyVQ2dH/g0N6dGEgQtbf81NFFc7x
+#  ONr38gMxoqZoAYNeD48IexlKOju40+ZGTgupmbYD524+JblMEK8r10qRpC/ze55zEdPhq9DWvgTV+D/jv5WYQeTxbgg7OQgSWF6f6OmIsYtYdZ
+#  J9kkAlrDuVoJm9z+BWggM+radkgB6Hgm6RIRXh0QWkZ2AzrbpptYTbYM8Fvppw1bASX8os2k1DHpUpabZLlrl5hNJQ5R5PHDA4pQumgnL7saWQ
+#  X74MTT7BN0GPfvBCe+tA/nDRjddAD+tb4TdAUqTE2O9zd12Is1XwshlfETQjgk7aQd34l9mYri7yv36xxIuQwQKBgQDI1iCNc8zYz49kDZXKXR
+#  H9YMO498XbgsLYwzDz7N0kk50hTBR8nuf+Y/9BX6ld4AG+12tt55jG6yKwZAxp7cF3/yhUf+CLRo5dUWlTTNTZRpOafQoMHhHGl8w/2HmbilP1
+#  exN8eR7iDhfln047r+euGWkOAkR5nwLzVZEvBDEgCQKBgQC+kQeBmi60y4UzoX3a05hq6nfwFblUE1fYMRwMKiMZVmY3BBACPeRkAkzknOBuSQ
+#  DBNC5Wb4rOw8EGpM3luXWY0LRvv3B34V2zWFGww0ra6ybsnohRxjn1Ut6rdzjdcn0xpfuZxE/E38geg3NvBMbH/pfq/tWolPoro+EXrUfVyQKB
+#  gQCXum3Nb/cKtYS3KixIPhghPMGhNE+ejyN1b8HEBubrgznqtfekTskmP5XQZd0mtt2auFTJK3cYkPwcFvnp7V2Esphdfl692ggkKCVScXE81T
+#  0eMektTmpPhs8gTQNSpybXBqyqFTdnwQ38xGXuYe6+cSQVGVFyMNehzrtosdoLQQKBgQCG0BzKT+P43P3Hj9h0JTrvcB4XR5cLZn+/nsZjyK95
+#  7khzZTlaDKT1Jzd0h5KyEo0pIRwi49gD/DIi3BYZDUGnMQZlA76x4EokZTetYAslojOwM1rm1uALsGt8S+R7rNHqfKzolBuGgHWXOJFCGdPyii
+#  a5BTzrfTEaDF5iHKD0GQKBgQCkm613G4iTWLlVj2XUpFbjqjBvh/Qv4CVvmTmWRn/x4SLgD99GL/l5czW6eZjiVdycRy8NI03Q+4I6BJj7519M
+#  LjyS31geRIxz22hF7M0azsn3lMkPchHNszlpSFQzyw0mM2mTUBeN7UzTzQN1Z/7Z319U6NpVloQLYfjQgNUY5A==
+#  -----END RSA PRIVATE KEY-----
 ---
 ###################### BLOG-WEB测试环境配置 #########################
 spring:
