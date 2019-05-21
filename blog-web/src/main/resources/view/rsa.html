@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" th:src="@{~/js/jquery.js}"></script>
+    <script type="text/javascript" th:src="@{~/js/jsencrypt.min.js}"></script>
+</head>
+<body>
+<script type="text/javascript">
+    $(function () {
+        $("#bt").click(
+            function () {
+
+                var encrypt = new JSEncrypt();
+                encrypt.setPublicKey($("#publickey").val());
+                $.ajax({
+                    type: "POST",
+                    url: "/rsa/rsaTest",
+                    data: "{\"requestData\":" + encrypt.encrypt(JSON.stringify({userId: "1"})) + "}",
+                    dataType: 'json',
+                    contentType: "application/json",
+                    success: function (result) {
+                        alert("解密的名称：" + uncrypted);
+                    }
+                });
+
+                // $.post('/rsa/rsaTest', {userId: encrypt.encrypt(1)}, function (data) {
+                //     console.log(data);
+                // },"application/json");
+            });
+    });
+</script>
+<h2>公钥：</h2>
+<textarea id="publickey" rows="5" cols="45">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlYCzVPPQWUf4ZnZZ6U0lxRCeoAcLPnj634ZU997+Zfx/aHp0MrolH9zRriQ8Y4MGmo0dEWCVpSoYRvHMBA1DOvWwx93Ob6MPQbFtjjj96Yfdo1SJbOuF2A/OqQ5Cs2QRs7sUgX6nx336vM7+N5fsWQXr0N4NItJrEKsKFSdTMxRxv1KgCONXNFVFhC5/tcmIlorl+uViPOUGgKvsh88KohXEK+p9Rd2r4vxso7u5GWM/Is+KiOxMwJrOL5NwhSjBdMEb3CWdETjbkKq4MylJVNMcqGlXPdPDSDa6/p9FUXCU3nYbHwBlBdii2u+fuw648qXaGnZiY/rAJ0J8IbikEQIDAQAB
+        </textarea>
+<input type="button" id="bt" value="提交"/>
+</body>
+</html>
