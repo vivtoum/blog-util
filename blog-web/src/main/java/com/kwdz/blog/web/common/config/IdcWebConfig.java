@@ -10,7 +10,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.core.env.Environment;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -29,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 @ComponentScan({"com.kwdz.*"})
 @EnableFeignClients({"com.kwdz.*"})
-@EnableRedisHttpSession
+//@EnableRedisHttpSession
 @EnableEurekaClient
 @Configuration
 @RestController

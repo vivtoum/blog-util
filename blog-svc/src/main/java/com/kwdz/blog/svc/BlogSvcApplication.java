@@ -12,7 +12,6 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @see BlogSvcConfig 公用配置
  */
 @SpringBootApplication
-@EnableDiscoveryClient
 public class BlogSvcApplication {
 
     public static void main(String[] args) {
