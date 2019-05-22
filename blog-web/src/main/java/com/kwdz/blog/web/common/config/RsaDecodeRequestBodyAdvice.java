@@ -3,10 +3,9 @@ package com.kwdz.blog.web.common.config;
 
 import com.kwdz.blog.api.common.util.RSAUtils;
 import com.kwdz.blog.api.common.util.RsaSecurityParameter;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;
@@ -19,14 +18,15 @@ import java.io.InputStream;
 import java.lang.reflect.Type;
 
 /**
+ * 请求数据解密
+ *
  * @author monkey
- * @desc 请求数据解密
  * @date 2018/10/29 20:17
  */
-@ControllerAdvice(basePackages = "com.monkey.springboot.demo.controller")
+@Slf4j
+@ControllerAdvice(basePackages = "com.kwdz.blog.web.controller")
 public class RsaDecodeRequestBodyAdvice implements RequestBodyAdvice {
 
-    private static final Logger logger = LoggerFactory.getLogger(RsaDecodeRequestBodyAdvice.class);
 
     private static final String PRIVATE_KEY = "MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAIn2zWqU7K/2qm5pOpq5bp9R+3MTnStWTfJU9nC/Vo7UKH9dITPvrELCTK+qlqpx5Fes+l0GY7n6u4n4jyiw4ejsvkZYQ5ww477yLOn2FcoEGuZEwPgSCmfTST0OFUgQqn+/J11k9L92jEHyieE3qmhMkMt0UsVUSJwx/nZxo30ZAgMBAAECgYBD3YHigeuEC4R+14iaf8jo2j0kuGtB3Cxvnlez0otTqw1YyYkBsU49cLKkXvfKVEgM0Ow/QltgKvSBxCE31PrrDka5TygVMqqA/IM7NrDvjUcGLjyoeNmLA8660fWcDxUTlAGN5kxIvUATayVwKVflpWPWu0FPKsWrZustnEo+4QJBAMCmYsWqAKWYMVRXFP3/XGRfio8DV793TOckyBSN9eh8UhgoZyT3u7oeHmDJEwm4aNMHlg1Pcdc6tNsvi1FRCiUCQQC3VNzfF4xOtUgX7vWPL8YVljLuXmy12iVYmg6ofu9l31nwM9FLQ1TRFglvF5LWrIXTQb07PgGd5DJMAQWGsqLlAkAPE7Z9M73TN+L8b8hDzJ1leZi1cpSGdoa9PEKwYR/SrxAZtefEm+LEQSEtf+8OfrEtetWCeyo0pvKKiOEFXytFAkEAgynL/DC0yXsZYUYtmYvshHU5ayFTVagFICbYZeSrEo+BoUDxdI9vl0fU6A5NmBlGhaZ65G+waG5jLc1tTrlvoQJAXBEoPcBNAosiZHQfYBwHqU6mJ9/ZacJh3MtJzGGebfEwJgtln5b154iANqNWXpySBLvkK+Boq7FYRiD83pqmUg==";
 
@@ -51,14 +51,14 @@ public class RsaDecodeRequestBodyAdvice implements RequestBodyAdvice {
                 encode = serializedField.inDecode();
             }
             if (encode) {
-                logger.info("对方法method :【" + methodParameter.getMethod().getName() + "】返回数据进行解密");
+                log.info("对方法method :【" + methodParameter.getMethod().getName() + "】返回数据进行解密");
                 return new MyHttpInputMessage(inputMessage);
             } else {
                 return inputMessage;
             }
         } catch (Exception e) {
             e.printStackTrace();
-            logger.error("对方法method :【" + methodParameter.getMethod().getName() + "】返回数据进行解密出现异常：" + e.getMessage());
+            log.error("对方法method :【" + methodParameter.getMethod().getName() + "】返回数据进行解密出现异常：" + e.getMessage());
             return inputMessage;
         }
     }
@@ -94,15 +94,12 @@ public class RsaDecodeRequestBodyAdvice implements RequestBodyAdvice {
          * @return
          */
         public String easpString(String requestData) {
-            if (requestData != null && !requestData.equals("")) {
+            if (requestData != null && !"".equalsIgnoreCase(requestData)) {
                 String s = "{\"requestData\":";
                 if (!requestData.startsWith(s)) {
                     throw new RuntimeException("参数【requestData】缺失异常！");
                 } else {
-                    int closeLen = requestData.length() - 1;
-                    int openLen = "{\"requestData\":".length();
-                    String substring = StringUtils.substring(requestData, openLen, closeLen);
-                    return substring;
+                    return StringUtils.substring(requestData, s.length(), requestData.length() - 1);
                 }
             }
             return "";

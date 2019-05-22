@@ -53,7 +53,6 @@ public class RSAUtils {
      */
     private static final String PUBLIC_KEY = "RSAPublicKey";
 
-    /** */
     /**
      * 获取私钥的key
      */
@@ -62,17 +61,18 @@ public class RSAUtils {
     /**
      * RSA最大加密明文大小
      */
-    private static final int MAX_ENCRYPT_BLOCK = 245;
+    private static final int MAX_ENCRYPT_BLOCK = 117;
 
     /**
      * RSA最大解密密文大小
      */
-    private static final int MAX_DECRYPT_BLOCK = 256;
+    private static final int MAX_DECRYPT_BLOCK = 128;
 
     /**
-     * RSA 位数 如果采用 2048 上面最大加密和最大解密则须填写:  245 256
+     * RSA 位数 如果采用2048 上面最大加密和最大解密则须填写:  245 256
      */
-    private static final int INITIALIZE_LENGTH = 2048;
+    private static final int INITIALIZE_LENGTH = 1024;
+
 
     /**
      * <p>
@@ -99,11 +99,8 @@ public class RSAUtils {
      * 用私钥对信息生成数字签名
      * </p>
      *
-     * @param data
-     *            已加密数据
-     * @param privateKey
-     *            私钥(BASE64编码)
-     *
+     * @param data       已加密数据
+     * @param privateKey 私钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -123,16 +120,11 @@ public class RSAUtils {
      * 校验数字签名
      * </p>
      *
-     * @param data
-     *            已加密数据
-     * @param publicKey
-     *            公钥(BASE64编码)
-     * @param sign
-     *            数字签名
-     *
+     * @param data      已加密数据
+     * @param publicKey 公钥(BASE64编码)
+     * @param sign      数字签名
      * @return
      * @throws Exception
-     *
      */
     public static boolean verify(byte[] data, String publicKey, String sign) throws Exception {
         byte[] keyBytes = Base64.decodeBase64(publicKey);
@@ -150,10 +142,8 @@ public class RSAUtils {
      * 私钥解密
      * </p>
      *
-     * @param encryptedData
-     *            已加密数据
-     * @param privateKey
-     *            私钥(BASE64编码)
+     * @param encryptedData 已加密数据
+     * @param privateKey    私钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -190,10 +180,8 @@ public class RSAUtils {
      * 公钥解密
      * </p>
      *
-     * @param encryptedData
-     *            已加密数据
-     * @param publicKey
-     *            公钥(BASE64编码)
+     * @param encryptedData 已加密数据
+     * @param publicKey     公钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -230,10 +218,8 @@ public class RSAUtils {
      * 公钥加密
      * </p>
      *
-     * @param data
-     *            源数据
-     * @param publicKey
-     *            公钥(BASE64编码)
+     * @param data      源数据
+     * @param publicKey 公钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -271,10 +257,8 @@ public class RSAUtils {
      * 私钥加密
      * </p>
      *
-     * @param data
-     *            源数据
-     * @param privateKey
-     *            私钥(BASE64编码)
+     * @param data       源数据
+     * @param privateKey 私钥(BASE64编码)
      * @return
      * @throws Exception
      */
@@ -311,8 +295,7 @@ public class RSAUtils {
      * 获取私钥
      * </p>
      *
-     * @param keyMap
-     *            密钥对
+     * @param keyMap 密钥对
      * @return
      * @throws Exception
      */
@@ -326,8 +309,7 @@ public class RSAUtils {
      * 获取公钥
      * </p>
      *
-     * @param keyMap
-     *            密钥对
+     * @param keyMap 密钥对
      * @return
      * @throws Exception
      */

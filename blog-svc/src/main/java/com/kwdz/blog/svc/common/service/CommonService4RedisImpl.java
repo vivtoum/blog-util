@@ -180,7 +180,7 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
                         boolean hasKey = redisUtil.hasKey(this.key);
                         if (hasKey) {
                             redisUtil.del(key);
-                            log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.save() : 从缓存中删除  >> " + e.toString());
+                            log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.save() : 从缓存中删除  >> " + this.key + e.toString());
                         }
                     }
                 } catch (Exception ex) {
@@ -220,7 +220,7 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
             for (String id : ids) {
                 commonDao.delete(id);
 
-                // 从缓存中获取城市信息
+                // 从缓存中获取信息
                 String key = createKey(id);
 
                 // 缓存存在
@@ -228,7 +228,7 @@ public class CommonService4RedisImpl<V, E> implements CommonService<V, E> {
                 if (hasKey) {
                     V v = (V) redisUtil.get(key);
                     redisUtil.del(key);
-                    log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.save() : 从缓存中删除  >> " + v.toString());
+                    log.info(this.entityVoClass.getSimpleName() + "ServiceImpl.delete() : 从缓存中删除  >> " + v.toString());
                 }
             }
             return ResultModel.of(ids);
